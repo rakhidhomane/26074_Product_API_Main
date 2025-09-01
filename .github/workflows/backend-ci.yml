@@ -1,0 +1,74 @@
+name: Backend CI/CD - Build and Push Docker Image
+
+on:
+  push:
+    branches:
+      - main
+      - dev
+      - 'feature/*'
+      - 'release/*'
+  pull_request:
+    branches:
+      - main
+      - dev
+  workflow_dispatch:
+
+jobs:
+  backend-build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      # Checkout code
+      - name: Checkout source code
+        uses: actions/checkout@v3
+
+      # Set up Java
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+      # Build backend
+      - name: Build backend with Maven
+        working-directory: ./ProductApp-API-main
+        run: mvn clean package -DskipTests=false
+
+      # Run unit tests
+      - name: Run unit tests
+        working-directory: ./ProductApp-API-main
+        run: mvn test
+
+      # SonarCloud Scan
+      - name: SonarCloud Scan
+        working-directory: ./ProductApp-API-main
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        run: |
+          mvn org.sonarsource.scanner.maven:sonar-maven-plugin:sonar \
+            -Dsonar.projectKey=rakhidhomane_26074_Product_API_Main \
+            -Dsonar.projectName=rakhidhomane_26074_Product_API_Main \
+            -Dsonar.organization=rakhidhomane \
+            -Dsonar.host.url=https://sonarcloud.io \
+            -Dsonar.login=${{ secrets.SONAR_TOKEN }}
+
+      # Docker login
+      - name: Docker login
+        run: echo "${{ secrets.DOCKERHUB_TOKEN }}" | docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin
+
+      # Build Docker image
+      - name: Build backend Docker image
+        run: docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/product-app-backend ./ProductApp-API-main
+
+      # Scan backend image
+      - name: Scan backend image with Trivy
+        uses: aquasecurity/trivy-action@master
+        continue-on-error: true
+        with:
+          image-ref: ${{ secrets.DOCKERHUB_USERNAME }}/product-app-backend
+          format: table
+          exit-code: 1
+          severity: CRITICAL,HIGH
+
+      # Push backend image
+      - name: Push backend image
+        run: docker push ${{ secrets.DOCKERHUB_USERNAME }}/product-app-backend
