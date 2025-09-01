@@ -30,17 +30,17 @@ jobs:
 
       # Build backend
       - name: Build backend with Maven
-        working-directory: ./ProductApp-API-main
+        #working-directory: ./ProductApp-API-main
         run: mvn clean package -DskipTests=false
 
       # Run unit tests
       - name: Run unit tests
-        working-directory: ./ProductApp-API-main
+        #working-directory: ./ProductApp-API-main
         run: mvn test
 
       # SonarCloud Scan
       - name: SonarCloud Scan
-        working-directory: ./ProductApp-API-main
+        #working-directory: ./ProductApp-API-main
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: |
@@ -57,7 +57,7 @@ jobs:
 
       # Build Docker image
       - name: Build backend Docker image
-        run: docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/product-app-backend ./ProductApp-API-main
+        run: docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/product-app-backend .
 
       # Scan backend image
       - name: Scan backend image with Trivy
