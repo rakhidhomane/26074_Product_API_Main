@@ -1,0 +1,62 @@
+
+}com.example.backend.controller.ProductController#save(Lcom/example/backend/model/Product;)Lcom/example/backend/model/Product;ê
+ÖE:/ALMPOClist/New folder/ThreeTierApplication/ProductApp-API-main/src/main/java/com/example/backend/controller/ProductController.java ("startingBlock*Ë
+startingBlock (5ò
+ï
+ (
+%2"
+__annotate*+
+
+__unknown_file (
+PostMapping*J
+
+__unknown_file (.
+,
+product!com.example.backend.model.Productò
+ï
+ ($
+%3"
+__annotate*+
+
+__unknown_file (
+RequestBody*J
+
+__unknown_file (.
+,
+product!com.example.backend.model.Productë
+é
+- (4,
+product!com.example.backend.model.Product"__annotation*"
+
+__unknown_file (
+
+%2*"
+
+__unknown_file (
+
+%3*
+1*Î
+1 (´
+®
+ (0
+%0*com.example.backend.service.ProductService"__id*d
+
+__unknown_file (H*F2
+0com.example.backend.controller.ProductController"
+productServiceˆÛ
+ (+'
+%1!com.example.backend.model.Product"wcom.example.backend.service.ProductService#save(Lcom/example/backend/model/Product;)Lcom/example/backend/model/Product;*N
+
+__unknown_file (2
+0
+%0*com.example.backend.service.ProductService*J
+
+__unknown_file (.
+,
+product!com.example.backend.model.Product2)save(Lcom/example/backend/model/Product;)"5
+ (,)
+'
+%1!com.example.backend.model.Product:8
+ (4,
+product!com.example.backend.model.ProductB42
+0com.example.backend.controller.ProductControllerH

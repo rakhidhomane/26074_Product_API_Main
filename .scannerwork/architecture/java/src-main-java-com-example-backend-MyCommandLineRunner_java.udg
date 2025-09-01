@@ -1,0 +1,230 @@
+
+1.0#rakhidhomane_ThreeTierAppProductAPIJavaFrontend"1756104809670*java2.BÓ
+?
+:src/main/java/com/example/backend/MyCommandLineRunner.java2
+	
+type3
+	
+MAIN4
+
+package6
+
+com.example.backend7
+,
+'com.example.backend.MyCommandLineRunner9
+
+class10
+
+access11
+
+public12
+
+simple-name13
+
+MyCommandLineRunner14
+/
+)Recovered#typeBindingLCommandLineRunner;016
+
+unknown17
+
+
+implements18
+
+	Component20
+
+annotated by21
+'
+!Recovered#typeBindingLComponent;023
+
+
+uses24
+<
+6com.example.backend.MyCommandLineRunner.productService26
+
+field27
+
+private28
+
+productService29
+0
+*com.example.backend.service.ProductService31
+
+is type32
+
+	Autowired34
+'
+!Recovered#typeBindingLAutowired;036
+G
+Acom.example.backend.MyCommandLineRunner#run([Ljava/lang/String;)V38
+
+method39
+	
+run40
+'
+!com.example.backend.model.Product42
+
+calls43
+
+returns44
+
+
+references45
+}
+wcom.example.backend.service.ProductService#save(Lcom/example/backend/model/Product;)Lcom/example/backend/model/Product;47J
+
+1
+12
+
+
+3
+4Z
+
+5	
+576jã
+
+30
+303117
+
+46
+464717
+
+15
+151617
+
+22
+222317
+
+33
+333417
+
+41
+414217
+A
+37;
+373839 *
+1 (28:5B
+
+
+11
+12
+
+
+13
+40
+
+35
+353617
+A
+25;
+252627 *
+1 (28:5B
+
+
+11
+28
+
+
+13
+29
+;
+86
+8910 *
+1
+ 
+(!:5B
+
+
+11
+12
+
+
+13
+14
+
+19
+192017rÕ
+
+81518*
+1
+- 
+(>
+
+81921*
+1	 	(
+
+82224*
+1	 	(
+
+81524*
+1
+- 
+(>
+
+253032*
+1 (
+
+253321*
+1 (
+
+253524*
+1 (
+
+253024*
+1 (
+
+253024*
+1 (*
+
+374132*
+1 (
+
+374124*
+1	 (
+
+374143*
+1 (&
+
+374144*
+1	 (
+
+373045*
+1	 (
+
+374643*
+1 (
+
+372545*
+1	 (
+
+373024*
+1	 (
+
+372545*
+1	 (
+
+374132*
+1 (
+
+374124*
+1	 (
+
+374143*
+1  ('
+
+374144*
+1	 (
+
+373045*
+1	 (
+
+374643*
+1 (
+
+372545*
+1	 (
+
+373024*
+1	 (
+
+372545*
+1	 (

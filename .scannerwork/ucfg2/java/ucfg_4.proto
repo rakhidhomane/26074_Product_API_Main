@@ -1,0 +1,103 @@
+
+ècom.example.backend.controller.ProductController#update(Ljava/lang/Long;Lcom/example/backend/model/Product;)Lcom/example/backend/model/Product;ê
+ÖE:/ALMPOClist/New folder/ThreeTierApplication/ProductApp-API-main/src/main/java/com/example/backend/controller/ProductController.java ("startingBlock*‰
+startingBlock (N~
+|
+ (
+%2"
+__annotate**
+
+__unknown_file (
+
+PutMapping*2
+
+__unknown_file (
+
+idjava.lang.LongÄ
+~
+ ('
+%3"
+__annotate*,
+
+__unknown_file (
+PathVariable*2
+
+__unknown_file (
+
+idjava.lang.Longx
+v
+- (/
+idjava.lang.Long"__annotation*"
+
+__unknown_file (
+
+%2*"
+
+__unknown_file (
+
+%3ó
+î
+ (
+%4"
+__annotate**
+
+__unknown_file (
+
+PutMapping*J
+
+__unknown_file (.
+,
+product!com.example.backend.model.Productò
+ï
+1 (=
+%5"
+__annotate*+
+
+__unknown_file (
+RequestBody*J
+
+__unknown_file (.
+,
+product!com.example.backend.model.Productë
+é
+F (M,
+product!com.example.backend.model.Product"__annotation*"
+
+__unknown_file (
+
+%4*"
+
+__unknown_file (
+
+%5*
+1*Ã
+1 (´
+®
+ (0
+%0*com.example.backend.service.ProductService"__id*d
+
+__unknown_file (H*F2
+0com.example.backend.controller.ProductController"
+productService◊‘
+ (5'
+%1!com.example.backend.model.Product"çcom.example.backend.service.ProductService#updateById(Ljava/lang/Long;Lcom/example/backend/model/Product;)Lcom/example/backend/model/Product;*N
+
+__unknown_file (2
+0
+%0*com.example.backend.service.ProductService*2
+
+__unknown_file (
+
+idjava.lang.Long*J
+
+__unknown_file (.
+,
+product!com.example.backend.model.Product2?updateById(Ljava/lang/Long;Lcom/example/backend/model/Product;)"5
+ (6)
+'
+%1!com.example.backend.model.Product: 
+ (0
+idjava.lang.Long:8
+1 (M,
+product!com.example.backend.model.ProductB42
+0com.example.backend.controller.ProductControllerH

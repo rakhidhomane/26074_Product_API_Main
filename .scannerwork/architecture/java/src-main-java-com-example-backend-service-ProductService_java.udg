@@ -1,0 +1,199 @@
+
+1.0#rakhidhomane_ThreeTierAppProductAPIJavaFrontend"1756104808860*java2.BÉ
+B
+=src/main/java/com/example/backend/service/ProductService.java2
+	
+type3
+	
+MAIN4
+
+package6
+ 
+com.example.backend.service7
+/
+*com.example.backend.service.ProductService9
+
+	interface10
+
+access11
+
+public12
+
+simple-name13
+
+ProductService14
+}
+wcom.example.backend.service.ProductService#save(Lcom/example/backend/model/Product;)Lcom/example/backend/model/Product;16
+
+method17
+
+
+save18
+'
+!com.example.backend.model.Product20
+
+unknown21
+
+returns22
+
+	has param23
+
+
+uses24
+
+is type25
+î
+çcom.example.backend.service.ProductService#updateById(Ljava/lang/Long;Lcom/example/backend/model/Product;)Lcom/example/backend/model/Product;27
+
+
+updateById28
+J
+Dcom.example.backend.service.ProductService#findAll()Ljava/util/List;30
+
+findAll31
+n
+hcom.example.backend.service.ProductService#findById(Ljava/lang/Long;)Lcom/example/backend/model/Product;33
+
+findById34
+N
+Hcom.example.backend.service.ProductService#deleteById(Ljava/lang/Long;)V36
+
+
+deleteById37J
+
+1
+12
+
+
+3
+4Z
+
+5	
+576j†
+;
+86
+8910 *
+1 ( :5B
+
+
+11
+12
+
+
+13
+14
+A
+15;
+151617 *
+1 (28:5B
+
+
+11
+12
+
+
+13
+18
+
+19
+192021
+A
+26;
+262717 *
+1
+ 
+(28:5B
+
+
+11
+12
+
+
+13
+28
+A
+29;
+293017 *
+1 (	28:5B
+
+
+11
+12
+
+
+13
+31
+A
+32;
+323317 *
+1 (28:5B
+
+
+11
+12
+
+
+13
+34
+A
+35;
+353617 *
+1 (	28:5B
+
+
+11
+12
+
+
+13
+37rﬂ
+
+151922*
+1 (
+
+151923*
+1 (
+
+151924*
+1 (
+
+151925*
+1 (!
+
+151924*
+1 (
+
+261922*
+1
+ 
+(
+
+261923*
+1
+! 
+((
+
+261924*
+1
+ 
+(
+
+261925*
+1
+) 
+(0
+
+261924*
+1
+! 
+((
+
+291924*
+1
+ (
+
+321922*
+1 (
+
+321924*
+1 (

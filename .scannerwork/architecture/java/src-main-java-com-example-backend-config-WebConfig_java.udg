@@ -1,0 +1,164 @@
+
+1.0#rakhidhomane_ThreeTierAppProductAPIJavaFrontend"1756104806917*java2.B«
+<
+7src/main/java/com/example/backend/config/WebConfig.java2
+	
+type3
+	
+MAIN4
+
+package6
+
+com.example.backend.config7
+)
+$com.example.backend.config.WebConfig9
+
+class10
+
+access11
+
+public12
+
+simple-name13
+
+	WebConfig14
+
+Configuration16
+
+unknown17
+
+annotated by18
++
+%Recovered#typeBindingLConfiguration;020
+
+
+uses21
+O
+Icom.example.backend.config.WebConfig#webMvcConfigurer()LWebMvcConfigurer;23
+
+method24
+
+webMvcConfigurer25
+
+WebMvcConfigurer27
+
+returns28
+
+
+Bean30
+"
+Recovered#typeBindingLBean;032
+,
+&com.example.backend.config.WebConfig$134
+
+	protected35
+M
+Gcom.example.backend.config.WebConfig$1#addCorsMappings(LCorsRegistry;)V37
+
+addCorsMappings38
+*
+$Recovered#typeBindingLCorsRegistry;040
+
+	has param41
+
+is type42J
+
+1
+12
+
+
+3
+4Z
+
+5	
+576jô
+6
+330
+333410 *
+1' ((222:5B
+
+
+11
+35
+
+15
+151617
+
+31
+313217
+
+26
+262717
+;
+86
+8910 *
+1	 	(:5B
+
+
+11
+12
+
+
+13
+14
+
+19
+192017
+
+39
+394017
+B
+36<
+363724 *
+1 (233:5B
+
+
+11
+12
+
+
+13
+38
+A
+22;
+222324 *
+1 (28:5B
+
+
+11
+12
+
+
+13
+25
+
+29
+293017rñ
+
+81518*
+1 (
+
+81921*
+1 (
+
+222628*
+1 (
+
+222918*
+1 (
+
+223121*
+1 (
+
+
+222621*
+1 (
+
+363941*
+1) (5
+
+363942*
+16 (>
+
+363921*
+1) (5

@@ -1,0 +1,7 @@
+organization=rakhidhomane
+projectKey=rakhidhomane_ThreeTierAppProductAPI
+serverUrl=https://sonarcloud.io
+serverVersion=8.0.0.66444
+dashboardUrl=https://sonarcloud.io/dashboard?id=rakhidhomane_ThreeTierAppProductAPI
+ceTaskId=AZjgASx1vWggGElD9Hc3
+ceTaskUrl=https://sonarcloud.io/api/ce/task?id=AZjgASx1vWggGElD9Hc3

@@ -1,0 +1,205 @@
+
+1.0#rakhidhomane_ThreeTierAppProductAPIJavaFrontend"1756104810298*java2.B¹
+9
+4src/main/java/com/example/backend/model/Product.java2
+	
+type3
+	
+MAIN4
+
+package6
+
+com.example.backend.model7
+&
+!com.example.backend.model.Product9
+
+class10
+
+access11
+
+public12
+
+simple-name13
+
+Product14
+
+Entity16
+
+unknown17
+
+annotated by18
+$
+Recovered#typeBindingLEntity;020
+
+
+uses21
+
+Setter23
+$
+Recovered#typeBindingLSetter;025
+
+Getter27
+$
+Recovered#typeBindingLGetter;029
+*
+$com.example.backend.model.Product.id31
+
+field32
+
+private33
+
+id34
+
+Id36
+ 
+Recovered#typeBindingLId;038
+
+GeneratedValue40
+,
+&Recovered#typeBindingLGeneratedValue;042
+-
+'com.example.backend.model.Product.title44
+
+title45
+-
+'com.example.backend.model.Product.price47
+
+price48
+0
+*com.example.backend.model.Product.quantity50
+
+quantity51J
+
+1
+12
+
+
+3
+4Z
+
+5	
+576j‘
+
+15
+151617
+A
+30;
+303132 *
+1 (28:5B
+
+
+11
+33
+
+
+13
+34
+;
+86
+8910 *
+1 (:5B
+
+
+11
+12
+
+
+13
+14
+
+26
+262717
+A
+46;
+464732 *
+1 (28:5B
+
+
+11
+33
+
+
+13
+48
+
+28
+282917
+
+24
+242517
+
+39
+394017
+A
+49;
+495032 *
+1 (28:5B
+
+
+11
+33
+
+
+13
+51
+
+19
+192017
+
+41
+414217
+
+22
+222317
+A
+43;
+434432 *
+1 (28:5B
+
+
+11
+33
+
+
+13
+45
+
+35
+353617
+
+37
+373817rˆ
+
+81518*
+1
+ 
+(
+
+81921*
+1
+ 
+(
+
+82218*
+1 (
+
+82421*
+1 (
+
+82618*
+1 (
+
+82821*
+1 (
+
+303518*
+1 (
+
+303721*
+1 (
+
+303918*
+1 (
+
+304121*
+1 (

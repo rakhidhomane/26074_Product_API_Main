@@ -1,0 +1,63 @@
+
+ncom.example.backend.controller.ProductController#findById(Ljava/lang/Long;)Lcom/example/backend/model/Product;ê
+ÖE:/ALMPOClist/New folder/ThreeTierApplication/ProductApp-API-main/src/main/java/com/example/backend/controller/ProductController.java# #("startingBlock*õ
+startingBlock# #(2~
+|
+" "(
+%2"
+__annotate**
+
+__unknown_file (
+
+GetMapping*2
+
+__unknown_file (
+
+idjava.lang.LongÄ
+~
+# #()
+%3"
+__annotate*,
+
+__unknown_file (
+PathVariable*2
+
+__unknown_file (
+
+idjava.lang.Longx
+v
+#/ #(1
+idjava.lang.Long"__annotation*"
+
+__unknown_file (
+
+%2*"
+
+__unknown_file (
+
+%3*
+1*µ
+1$ $(´
+®
+$ $(0
+%0*com.example.backend.service.ProductService"__id*d
+
+__unknown_file (H*F2
+0com.example.backend.controller.ProductController"
+productService¿Ω
+$ $(*'
+%1!com.example.backend.model.Product"hcom.example.backend.service.ProductService#findById(Ljava/lang/Long;)Lcom/example/backend/model/Product;*N
+
+__unknown_file (2
+0
+%0*com.example.backend.service.ProductService*2
+
+__unknown_file (
+
+idjava.lang.Long2findById(Ljava/lang/Long;)"5
+$ $(+)
+'
+%1!com.example.backend.model.Product: 
+# #(1
+idjava.lang.LongB42
+0com.example.backend.controller.ProductControllerH
