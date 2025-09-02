@@ -40,23 +40,18 @@ jobs:
 
       # SonarCloud Scan
       - name: SonarCloud Scan
-        #working-directory: ./ProductApp-API-main
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
         run: |
           mvn org.sonarsource.scanner.maven:sonar-maven-plugin:sonar \
-            -Dsonar.projectKey=rakhidhomane_26074_Product_API_Main \
-            -Dsonar.projectName=rakhidhomane_26074_Product_API_Main \
-            -Dsonar.organization=rakhidhomane \
+            -Dsonar.projectKey=almcybage_26074-product-api-main \
+            -Dsonar.projectName=almcybage_26074-product-api-main \
             -Dsonar.host.url=${{ secrets.SONAR_HOST_URL }} \
             -Dsonar.login=${{ secrets.SONAR_TOKEN }}
        # SonarCloud Scan
       - name: SonarCloud Quality Gate Check
         uses: SonarSource/sonarcloud-github-action@master
-        with:
-          projectKey: rakhidhomane_26074_Product_API_Main
-          organization: rakhidhomane
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
