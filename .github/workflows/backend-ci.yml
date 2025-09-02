@@ -39,7 +39,7 @@ jobs:
       # SonarCloud Scan
       - name: SonarCloud Scan
         uses: SonarSource/sonarqube-scan-action@v5
-        continue-on-error: true 
+        
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
@@ -51,6 +51,7 @@ jobs:
 
       # Check SonarCloud Quality Gate
       - name: Check SonarCloud Quality Gate
+        continue-on-error: true 
         run: |
           echo "Checking SonarCloud Quality Gate status..."
           sleep 30
