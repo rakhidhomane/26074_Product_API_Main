@@ -51,10 +51,10 @@ jobs:
             -Dsonar.host.url=https://sonarcloud.io \
             -Dsonar.login=${{ secrets.SONAR_TOKEN }}
             
-       # Step 6: Check SonarCloud Quality Gate
+       # Check SonarCloud Quality Gate
       - name: Check SonarCloud Quality Gate
         id: quality-gate
-        continue-on-error: true 
+        #continue-on-error: true 
         run: |
           echo "Checking SonarCloud Quality Gate status..."
           sleep 30 # wait for SonarCloud to process
