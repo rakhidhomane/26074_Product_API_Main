@@ -50,7 +50,25 @@ jobs:
             -Dsonar.organization=rakhidhomane \
             -Dsonar.host.url=https://sonarcloud.io \
             -Dsonar.login=${{ secrets.SONAR_TOKEN }}
-
+            
+       # Step 6: Check SonarCloud Quality Gate
+      - name: Check SonarCloud Quality Gate
+        id: quality-gate
+        continue-on-error: true 
+        run: |
+          echo "Checking SonarCloud Quality Gate status..."
+          sleep 30 # wait for SonarCloud to process
+          response=$(curl -s -u "${{ secrets.SONAR_TOKEN }}:" \
+            "https://sonarcloud.io/api/qualitygates/project_status?projectKey=rakhidhomane_ThreeTierAppProductAPI")
+          status=$(echo $response | jq -r '.projectStatus.status')
+          if [ "$status" = "OK" ]; then
+            echo "Quality Gate status: SUCCESS"
+            echo "QUALITY_GATE_STATUS=SUCCESS" >> $GITHUB_ENV
+          else
+            echo "Quality Gate status: FAILED"
+            echo "QUALITY_GATE_STATUS=FAILED" >> $GITHUB_ENV
+            exit 1
+          fi
       # Docker login
       - name: Docker login
         run: echo "${{ secrets.DOCKERHUB_TOKEN }}" | docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin
