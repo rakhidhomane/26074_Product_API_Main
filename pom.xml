@@ -14,7 +14,7 @@
     <name>Lab12-Backend</name>
     <description>Lab12-Backend</description>
     <properties>
-        <sonar.organization>rakhidhomane</sonar.organization>
+        <sonar.organization>almcybage</sonar.organization>
     </properties>
     <dependencies>
         <dependency>
