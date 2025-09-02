@@ -30,46 +30,57 @@ jobs:
 
       # Build backend
       - name: Build backend with Maven
-        #working-directory: ./ProductApp-API-main
         run: mvn clean package -DskipTests=false
 
       # Run unit tests
       - name: Run unit tests
-        #working-directory: ./ProductApp-API-main
         run: mvn test
 
       # SonarCloud Scan
       - name: SonarCloud Scan
+        uses: SonarSource/sonarqube-scan-action@v5
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
-        run: |
-          mvn org.sonarsource.scanner.maven:sonar-maven-plugin:sonar \
-            -Dsonar.projectKey=almcybage_26074-product-api-main \
-            -Dsonar.projectName=almcybage_26074-product-api-main \
-            -Dsonar.host.url=${{ secrets.SONAR_HOST_URL }} \
-            -Dsonar.login=${{ secrets.SONAR_TOKEN }}
-       # SonarCloud Scan
-      - name: SonarCloud Quality Gate Check
-        uses: SonarSource/sonarcloud-github-action@master
-        env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        with:
+          args: >
+            -Dsonar.projectKey=almcybage_26074-product-api-main
+            -Dsonar.projectName=almcybage_26074-product-api-main
+            -Dsonar.host.url=${{ secrets.SONAR_HOST_URL }}
 
-    
+      # Check SonarCloud Quality Gate
+      - name: Check SonarCloud Quality Gate
+        run: |
+          echo "Checking SonarCloud Quality Gate status..."
+          sleep 30
+          response=$(curl -s -u "${{ secrets.SONAR_TOKEN }}:" \
+            "${{ secrets.SONAR_HOST_URL }}/api/qualitygates/project_status?projectKey=almcybage_26074-product-api-main")
+          status=$(echo $response | jq -r '.projectStatus.status')
+          if [ "$status" = "OK" ]; then
+            echo "Quality Gate status: SUCCESS ✅"
+          else
+            echo "Quality Gate status: FAILED ❌"
+            exit 1
+          fi
+
       # Docker login
       - name: Docker login
         run: echo "${{ secrets.DOCKERHUB_TOKEN }}" | docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin
 
-      # Build Docker image
-      - name: Build backend Docker image
-        run: docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/product-app-backend .
+      # Set Docker image tag (build number)
+      - name: Set Docker Image Tag
+        run: echo "IMAGE_TAG=${{ github.run_number }}" >> $GITHUB_ENV
 
-       # Scan backend image
+      # Build Docker image with build number tag
+      - name: Build backend Docker image
+        run: docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/product-app-backend:${IMAGE_TAG} .
+
+      # Scan backend image with Trivy
       - name: Scan backend image with Trivy
         uses: aquasecurity/trivy-action@master
         continue-on-error: true
         with:
-          image-ref: ${{ secrets.DOCKERHUB_USERNAME }}/product-app-backend
+          image-ref: ${{ secrets.DOCKERHUB_USERNAME }}/product-app-backend:${{ env.IMAGE_TAG }}
           format: json
           output: trivy-report.json
           exit-code: 1
@@ -82,6 +93,6 @@ jobs:
           name: trivy-backend-report
           path: trivy-report.json
 
-      # Push backend image
-      - name: Push backend image
-        run: docker push ${{ secrets.DOCKERHUB_USERNAME }}/product-app-backend
+      # Push backend image with build number tag
+      - name: Push backend Docker image
+        run: docker push ${{ secrets.DOCKERHUB_USERNAME }}/product-app-backend:${IMAGE_TAG}
