@@ -43,32 +43,24 @@ jobs:
         #working-directory: ./ProductApp-API-main
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
         run: |
           mvn org.sonarsource.scanner.maven:sonar-maven-plugin:sonar \
             -Dsonar.projectKey=rakhidhomane_26074_Product_API_Main \
             -Dsonar.projectName=rakhidhomane_26074_Product_API_Main \
             -Dsonar.organization=rakhidhomane \
-            -Dsonar.host.url=https://sonarcloud.io \
+            -Dsonar.host.url=${{ secrets.SONAR_HOST_URL }} \
             -Dsonar.login=${{ secrets.SONAR_TOKEN }}
-            
-       # Check SonarCloud Quality Gate
-      - name: Check SonarCloud Quality Gate
-        id: quality-gate
-        #continue-on-error: true 
-        run: |
-          echo "Checking SonarCloud Quality Gate status..."
-          sleep 30 # wait for SonarCloud to process
-          response=$(curl -s -u "${{ secrets.SONAR_TOKEN }}:" \
-            "https://sonarcloud.io/api/qualitygates/project_status?projectKey=rakhidhomane_ThreeTierAppProductAPI")
-          status=$(echo $response | jq -r '.projectStatus.status')
-          if [ "$status" = "OK" ]; then
-            echo "Quality Gate status: SUCCESS"
-            echo "QUALITY_GATE_STATUS=SUCCESS" >> $GITHUB_ENV
-          else
-            echo "Quality Gate status: FAILED"
-            echo "QUALITY_GATE_STATUS=FAILED" >> $GITHUB_ENV
-            exit 1
-          fi
+       # SonarCloud Scan
+      - name: SonarCloud Quality Gate Check
+        uses: SonarSource/sonarcloud-github-action@master
+        with:
+          projectKey: rakhidhomane_26074_Product_API_Main
+          organization: rakhidhomane
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
+    
       # Docker login
       - name: Docker login
         run: echo "${{ secrets.DOCKERHUB_TOKEN }}" | docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin
@@ -77,15 +69,23 @@ jobs:
       - name: Build backend Docker image
         run: docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/product-app-backend .
 
-      # Scan backend image
+       # Scan backend image
       - name: Scan backend image with Trivy
         uses: aquasecurity/trivy-action@master
         continue-on-error: true
         with:
           image-ref: ${{ secrets.DOCKERHUB_USERNAME }}/product-app-backend
-          format: table
+          format: json
+          output: trivy-report.json
           exit-code: 1
           severity: CRITICAL,HIGH
+
+      # Upload Trivy scan report
+      - name: Upload Trivy scan report
+        uses: actions/upload-artifact@v3
+        with:
+          name: trivy-backend-report
+          path: trivy-report.json
 
       # Push backend image
       - name: Push backend image
