@@ -48,23 +48,38 @@ jobs:
             -Dsonar.projectKey=almcybage_26074-product-api-main
             -Dsonar.projectName=almcybage_26074-product-api-main
             -Dsonar.host.url=${{ secrets.SONAR_HOST_URL }}
-
-      # Check SonarCloud Quality Gate
+      
+       # Check SonarCloud Quality Gate
       - name: Check SonarCloud Quality Gate
-        #continue-on-error: true 
         run: |
           echo "Checking SonarCloud Quality Gate status..."
-          sleep 30
-          response=$(curl -s -u "${{ secrets.SONAR_TOKEN }}:" \
-            "${{ secrets.SONAR_HOST_URL }}/api/qualitygates/project_status?projectKey=almcybage_26074-product-api-main")
-          status=$(echo $response | jq -r '.projectStatus.status')
-          if [ "$status" = "OK" ]; then
-            echo "Quality Gate status: SUCCESS ✅"
-          else
-            echo "Quality Gate status: FAILED ❌"
-            exit 1
-          fi
+          max_attempts=10
+          attempt=1
+          status="PENDING"
 
+          while [ "$status" = "PENDING" ] || [ "$status" = "IN_PROGRESS" ]; do
+            if [ $attempt -gt $max_attempts ]; then
+              echo "Timeout waiting for SonarCloud analysis."
+              exit 1
+            fi
+
+            response=$(curl -s -u "${{ secrets.SONAR_TOKEN }}:" \
+              "${{ secrets.SONAR_HOST_URL }}/api/qualitygates/project_status?projectKey=almcybage_26074-product-api-main")
+            
+            status=$(echo $response | jq -r '.projectStatus.status')
+            echo "Attempt $attempt: Current status = $status"
+
+            if [ "$status" = "OK" ]; then
+              echo "Quality Gate status: SUCCESS ✅"
+              exit 0
+            elif [ "$status" = "ERROR" ]; then
+              echo "Quality Gate status: FAILED ❌"
+              exit 1
+            fi
+
+            attempt=$((attempt+1))
+            sleep 15
+          done
       # Docker login
       - name: Docker login
         run: echo "${{ secrets.DOCKERHUB_TOKEN }}" | docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin
