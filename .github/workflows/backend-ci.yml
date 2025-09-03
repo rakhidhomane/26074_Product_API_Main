@@ -51,7 +51,7 @@ jobs:
 
       # Check SonarCloud Quality Gate
       - name: Check SonarCloud Quality Gate
-        continue-on-error: true 
+        #continue-on-error: true 
         run: |
           echo "Checking SonarCloud Quality Gate status..."
           sleep 30
