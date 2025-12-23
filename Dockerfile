@@ -1,4 +1,4 @@
-# Use the official Maven image as the base image
+# Use the official Maven image as the base image for the build stage
 FROM maven:3.8.4-openjdk-17 AS build
 
 # Set the working directory
@@ -12,12 +12,12 @@ COPY ./src /app/src
 RUN mvn clean package -Dmaven.test.skip=true
 
 # Create a new image for running the application
-FROM openjdk:17-jdk
+FROM openjdk:17-oracle
 
 # Set the working directory
 WORKDIR /app
 
-# Copy the built JAR file from the previous stage
+# Copy the built JAR file from the build stage
 COPY --from=build /app/target/*.jar app.jar
 
 # Expose the port on which the Spring Boot application will run
