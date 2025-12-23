@@ -45,9 +45,10 @@ jobs:
           SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
         with:
           args: >
-            -Dsonar.projectKey=almcybage_26074-product-api-main
-            -Dsonar.projectName=almcybage_26074-product-api-main
+            -Dsonar.projectKey=rakhidhomane_26074-product-api-main
+            -Dsonar.projectName=26074-product-api-main
             -Dsonar.host.url=${{ secrets.SONAR_HOST_URL }}
+            -Dsonar.organization=rakhidhomane
       
        # Check SonarCloud Quality Gate
       - name: Check SonarCloud Quality Gate
