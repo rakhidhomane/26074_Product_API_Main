@@ -1,27 +1,24 @@
-# Use the official Maven image as the base image for the build stage
-FROM maven:3.8.4-openjdk-17 AS build
+# =========================
+# Build Stage
+# =========================
+FROM maven:3.9.6-eclipse-temurin-17 AS build
 
-# Set the working directory
 WORKDIR /app
 
-# Copy the pom.xml and any other necessary configuration files
-COPY ./pom.xml /app
-COPY ./src /app/src
+COPY pom.xml .
+COPY src ./src
 
-# Build the application
-RUN mvn clean package -Dmaven.test.skip=true
+RUN mvn clean package -DskipTests
 
-# Create a new image for running the application
-FROM adoptopenjdk/openjdk16
+# =========================
+# Runtime Stage
+# =========================
+FROM eclipse-temurin:17-jre-alpine
 
-# Set the working directory
 WORKDIR /app
 
-# Copy the built JAR file from the build stage
 COPY --from=build /app/target/*.jar app.jar
 
-# Expose the port on which the Spring Boot application will run
 EXPOSE 8080
 
-# Command to run the application
-CMD ["java", "-jar", "app.jar"]
+ENTRYPOINT ["java","-jar","app.jar"]
