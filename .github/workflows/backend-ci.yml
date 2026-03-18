@@ -14,6 +14,46 @@ on:
   workflow_dispatch:
 
 jobs:
+  # ── SAST: Static Application Security Testing with CodeQL ──────────────────
+  codeql-sast:
+    name: CodeQL SAST Scan
+    runs-on: ubuntu-latest
+    permissions:
+      # Required for CodeQL to upload results to the Security tab
+      security-events: write
+      actions: read
+      contents: read
+    steps:
+      # Checkout source code (full history required by CodeQL)
+      - name: Checkout source code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      # Set up Java before CodeQL initialisation so the build succeeds
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+      # Initialise CodeQL analysis for Java
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v3
+        with:
+          languages: java
+
+      # Build the project so CodeQL can trace the compilation
+      - name: Build backend with Maven (for CodeQL)
+        run: mvn clean package -DskipTests
+
+      # Run the CodeQL analysis and upload results to GitHub Security tab
+      - name: Perform CodeQL Analysis
+        uses: github/codeql-action/analyze@v3
+        with:
+          category: /language:java
+
+  # ── Main CI: Build, Test, Scan, and Push Docker Image ──────────────────────
   backend-build-and-deploy:
     runs-on: ubuntu-latest
     steps:
