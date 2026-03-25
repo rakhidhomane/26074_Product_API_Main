@@ -18,14 +18,15 @@ public class VulnerableServlet extends HttpServlet {
 
         // 🔴 SQL Injection Vulnerability
         String userId = request.getParameter("id");
-        String query = "SELECT * FROM users WHERE id = " + userId;
+        String query = "SELECT * FROM users WHERE id = ?";
 
         try {
             Connection conn = DriverManager.getConnection(
                     "jdbc:mysql://localhost:3306/test", "root", DB_PASSWORD);
 
-            Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery(query);
+            PreparedStatement stmt = conn.prepareStatement(query);
+            stmt.setString(1, userId);
+            ResultSet rs = stmt.executeQuery();
 
             while (rs.next()) {
                 out.println("User: " + rs.getString("name"));
