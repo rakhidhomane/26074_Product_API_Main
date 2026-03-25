@@ -4,6 +4,7 @@ import java.io.*;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import java.sql.*;
+import org.apache.commons.text.StringEscapeUtils;
 
 public class VulnerableServlet extends HttpServlet {
 
@@ -42,6 +43,7 @@ public class VulnerableServlet extends HttpServlet {
 
         // 🔴 Missing Input Validation
         String username = request.getParameter("username");
-        out.println("Welcome " + username);
+        String safeUsername = username == null ? "" : StringEscapeUtils.escapeHtml4(username);
+        out.println("Welcome " + safeUsername);
     }
 }
