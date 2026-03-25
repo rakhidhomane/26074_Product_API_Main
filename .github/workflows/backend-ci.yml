@@ -42,6 +42,7 @@ jobs:
         uses: github/codeql-action/init@v3
         with:
           languages: java
+          queries: security-and-quality
 
       # Build the project so CodeQL can trace the compilation
       - name: Build backend with Maven (for CodeQL)
