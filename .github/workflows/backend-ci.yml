@@ -140,8 +140,8 @@ jobs:
         continue-on-error: true
         with:
           image-ref: ${{ secrets.DOCKERHUB_USERNAME }}/product-app-backend:${{ env.IMAGE_TAG }}
-          format: json
-          output: trivy-report.json
+          format: table
+          #output: trivy-report.json
           exit-code: 1
           severity: CRITICAL,HIGH
 
